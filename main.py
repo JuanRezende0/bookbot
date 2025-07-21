@@ -1,5 +1,6 @@
 from stats import count_words
 from stats import get_char_dictionary
+from stats import sorting_dictionary
 
 def get_book_text(filepath):
     with open(filepath) as f:
@@ -10,7 +11,14 @@ def main():
     text = get_book_text(book_path)
     num_words = count_words(text)
     char_dictionary = get_char_dictionary(text)
-    print(f"{num_words} words found in the document")
-    print(char_dictionary)
+    sorted_list = sorting_dictionary(char_dictionary)
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {num_words} total words")
+    print("--------- Character Count -------")
+    for i in sorted_list:
+        print(f'{i["char"]}: {i["num"]}')
+    print("============= END ===============")
 
 main()
